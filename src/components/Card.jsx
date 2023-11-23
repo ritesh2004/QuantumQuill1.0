@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 
 export const Card = () => {
+    const [open,setOpen] = useState("none")
     return (
-        <div style={{fontFamily:'Montserrat'}}>
+        <div style={{fontFamily:'Montserrat'}} onClick={()=>setOpen('block')}>
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <img class="rounded-t-lg" src="https://th.bing.com/th/id/OIP.ME9B34em3uKcXhdht3BTbwHaEK?rs=1&pid=ImgDetMain" alt="card" />
                 <div class="p-5">
-                    <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
-                    </a>
                     <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                     <div className='flex justify-between items-center'>
                     <span className='flex gap-2 items-center text-gray-500'>

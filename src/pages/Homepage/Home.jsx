@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import './Home.css'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -11,12 +11,16 @@ import { Navbar } from '../../components/Navbar';
 import { Card } from '../../components/Card';
 import { ImageCard } from '../../components/ImageCard';
 import { Footer } from '../../components/Footer';
+import { LoginModal } from '../../components/LoginModal';
+import Appcontext from '../../context/Appcontext';
+import { SignupModal } from '../../components/SignupModal';
 
 
 export const Home = () => {
+    const { openLogin,openSignup } = useContext(Appcontext)
     const items = [
         <div className='w-full relative'>
-            <img className='w-full' src={img1} role="presentation" />
+            <img className='w-full' src={img1} alt="image" role="presentation" />
             <div className='h-auto absolute w-[90%] bottom-8 left-4 md:left-[10%] md:bottom-[30%] md:w-[50%]'>
                 <span class="tagText bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">FutureTech</span>
                 <br />
@@ -26,7 +30,7 @@ export const Home = () => {
             </div>
         </div>,
         <div className='w-full relative'>
-            <img className='w-full' src={img2} role="presentation" />
+            <img className='w-full' src={img2} alt="image" role="presentation" />
             <div className='h-auto absolute w-[90%] bottom-5 left-4 md:left-[10%] md:bottom-[30%] md:w-[50%]'>
                 <span class="tagText bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">TechInnovations</span>
                 <br />
@@ -36,7 +40,7 @@ export const Home = () => {
             </div>
         </div>,
         <div className='w-full relative'>
-            <img className='w-full' src={img3} role="presentation" />
+            <img className='w-full' src={img3} alt="image" role="presentation" />
             <div className='h-auto absolute w-[90%] bottom-8 left-4 md:left-[10%] md:bottom-[30%] md:w-[50%]'>
                 <span class="tagText bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">LabToLife</span>
                 <br />
@@ -46,7 +50,7 @@ export const Home = () => {
             </div>
         </div>,
         <div className='w-full relative'>
-            <img className='w-full' src={img4} role="presentation" />
+            <img className='w-full' src={img4} alt="image" role="presentation" />
             <div className='h-auto absolute w-[90%] bottom-5 left-4 md:left-[10%] md:bottom-[30%] md:w-[50%]'>
                 <span class="tagText bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">InfinitePossibilities</span>
                 <br />
@@ -58,6 +62,12 @@ export const Home = () => {
     ];
     return (
         <div className='home w-full h-screen relative'>
+            <div style={{display:openLogin}}>
+                <LoginModal />
+            </div>
+            <div style={{display:openSignup}}>
+                <SignupModal/>
+            </div>
             <AliceCarousel
                 items={items}
                 animationType='fadeout'
@@ -72,10 +82,10 @@ export const Home = () => {
                 <Navbar />
             </div>
             <div className='w-full py-16 px-10'>
-                <span className='text-[36px] text-[#1b4965] font-semibold border-l-8 border-[#62b6cb] px-5' id='blogText'>
+                <span className='text-[24px] text-[#1b4965] font-bold border-l-8 border-[#62b6cb] px-5 md:text-[36px] md:font-semibold' id='blogText'>
                     Blog Articles
                 </span>
-                <div className='cards mt-10 flex flex-col gap-5 md:flex-wrap md:flex-row md:justify-around'>
+                <div className='cards mt-10 flex flex-col gap-5 justify-center items-center md:flex-wrap md:flex-row md:justify-around'>
                     <Card />
                     <Card />
                     <Card />
@@ -93,16 +103,16 @@ export const Home = () => {
                 </span>
             </div>
             <div className='w-full flex justify-around flex-col py-16 px-10'>
-                <span className='text-[36px] text-[#1b4965] font-semibold border-l-8 border-[#62b6cb] px-5' id='blogText'>
+                <span className='text-[24px] text-[#1b4965] font-bold border-l-8 border-[#62b6cb] px-5 md:text-[36px] md:font-semibold' id='blogText'>
                     Editor's Pick
                 </span>
-                <div className='flex justify-around pt-10'>
-                <ImageCard />
-                <ImageCard />
-                <ImageCard />
+                <div className='flex justify-around pt-10 flex-col justify-center gap-5 items-center md:flex-row'>
+                    <ImageCard />
+                    <ImageCard />
+                    <ImageCard />
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
