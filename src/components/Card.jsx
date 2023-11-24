@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Card.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css';
+
+AOS.init()
 
 export const Card = () => {
-    const [open,setOpen] = useState("none")
     return (
-        <div style={{fontFamily:'Montserrat'}} onClick={()=>setOpen('block')}>
+        <div style={{fontFamily:'Montserrat'}} data-aos="zoom-in-up">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <img class="rounded-t-lg" src="https://th.bing.com/th/id/OIP.ME9B34em3uKcXhdht3BTbwHaEK?rs=1&pid=ImgDetMain" alt="card" />
                 <div class="p-5">

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
-import { useState } from 'react'
 import Appcontext from '../context/Appcontext'
+import { NavLink } from 'react-router-dom'
+import "./Navbar.css"
 
-export const Navbar = () => {
+export const Navbar = ({bgColor}) => {
     const {setOpenLogin,setOpenSignup} = useContext(Appcontext);
     return (
         <div>
-            <nav class="bg-[#000000] bg-opacity-20 border-gray-200">
+            <nav class="bg-[#000000] bg-opacity-20" style={{backgroundColor:bgColor}}>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
@@ -20,17 +21,20 @@ export const Navbar = () => {
                     </button>
                     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                         <ul class="font-medium flex flex-col p-4 justify-center items-center md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
-                            <li>
-                                <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</a>
+                            <li className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700">
+                                <NavLink to={'/'}>Home</NavLink>
+                            </li>
+                            <li class="block py-2 px-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                <NavLink to={'/blogs'}>Posts</NavLink>
+                            </li>
+                            <li class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                <NavLink to={'/myblogs'}>My Posts</NavLink>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">My post</a>
+                                <button type="button" class="px-6 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>setOpenLogin("block")}>Login</button>
                             </li>
                             <li>
-                                <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>setOpenLogin("block")}>Login</button>
-                            </li>
-                            <li>
-                                <button type="button" class="text-whit font-medium border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 text-center  dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={()=>setOpenSignup("block")}>Signup</button>
+                                <button type="button" class="text-white font-medium border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2 text-center" onClick={()=>setOpenSignup("block")}>Signup</button>
                             </li>
                         </ul>
                     </div>
