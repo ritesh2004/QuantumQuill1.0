@@ -1,14 +1,43 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Appcontext from '../context/Appcontext'
+import { logIn } from '../api/Auth';
+import { Toaster } from 'react-hot-toast';
+import Authcontext from '../context/Authcontext';
 
 export const LoginModal = () => {
     const { setOpenLogin,setOpenSignup } = useContext(Appcontext);
+    const {setChange,change} = useContext(Authcontext)
+    const [form,setForm] = useState({email:"",password:""})
+    const [loading,setLoading] = useState(false);
     const openCreateACModal = () => {
         setOpenLogin("none")
         setOpenSignup("block")
     }
+    const handleForm = (e) => {
+        const {name,value} = e.target;
+        setForm((preVal) => {
+            return {
+                ...preVal,
+                [name]:value
+            }
+        })
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true)
+            await logIn(form.email,form.password);
+            setChange(!change)
+            setOpenLogin("none")
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+    }
     return (
         <div className="overflow-y-auto overflow-x-hidden fixed z-50 w-full h-screen flex justify-center items-center" style={{ background: 'rgba(0,0,0,0.5)',backdropFilter:'blur(5px)'}}>
+        <Toaster/>
             <div className="relative p-4 w-[350px] max-w-md max-h-full md:w-[500px]">
                 {/* <!-- Modal content --> */}
                 <div className="relative bg-white rounded-lg shadow">
@@ -26,15 +55,15 @@ export const LoginModal = () => {
                     </div>
                     {/* <!-- Modal body --> */}
                     <div className="p-4 md:p-5">
-                        <form className="space-y-4" action="#">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <div>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5" placeholder="@ enter email id" required />
+                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5" value={form.email} onChange={handleForm} placeholder="@ enter email id" required />
                             </div>
                             <div>
-                                <input type="password" name="password" id="password" placeholder="# enter password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5" required />
+                                <input type="password" name="password" id="password" value={form.password} onChange={handleForm} placeholder="# enter password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5" required />
                             </div>
                             <br />
-                            <button type="submit" className="w-full font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-lg px-5 py-3 text-center">LOGIN</button>
+                            <button type="submit" className="w-full font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-lg px-5 py-3 text-center" disabled={loading} style={{backgroundColor:loading&&"gray",cursor:loading&&"not-allowed"}}>LOGIN</button>
                             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                                 Not registered? <button className="text-blue-700 hover:underline dark:text-blue-500" onClick={openCreateACModal}>Create account</button>
                             </div>

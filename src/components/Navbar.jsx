@@ -2,11 +2,26 @@ import React, { useContext } from 'react'
 import Appcontext from '../context/Appcontext'
 import { NavLink } from 'react-router-dom'
 import "./Navbar.css"
+import Authcontext from '../context/Authcontext'
+import { logOut } from '../api/Auth'
+import { Toaster } from 'react-hot-toast'
 
 export const Navbar = ({bgColor}) => {
     const {setOpenLogin,setOpenSignup} = useContext(Appcontext);
+    const {isAuthenticated,change,setChange,user} = useContext(Authcontext);
+    const handleLogout = async () => {
+        try {
+            await logOut();
+            setChange(!change)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    // console.log(isAuthenticated)
+    // console.log(user?.profileURL)
     return (
         <div>
+        <Toaster/>
             <nav class="bg-[#000000] bg-opacity-20" style={{backgroundColor:bgColor}}>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -30,12 +45,14 @@ export const Navbar = ({bgColor}) => {
                             <li class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                 <NavLink to={'/myblogs'}>My Posts</NavLink>
                             </li>
-                            <li>
+                            {!isAuthenticated?<li>
                                 <button type="button" class="px-6 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>setOpenLogin("block")}>Login</button>
-                            </li>
-                            <li>
+                            </li>:<li>
+                                <button type="button" class="text-white font-medium border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2 text-center" onClick={handleLogout}>LOGOUT</button>
+                            </li>}
+                            {!isAuthenticated?<li>
                                 <button type="button" class="text-white font-medium border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2 text-center" onClick={()=>setOpenSignup("block")}>Signup</button>
-                            </li>
+                            </li>:<img class="w-10 h-10 rounded-full" src={user?.profileURL} alt="Rounded avatar" />}
                         </ul>
                     </div>
                 </div>

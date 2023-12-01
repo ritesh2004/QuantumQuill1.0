@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Home.css'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -15,10 +15,28 @@ import { LoginModal } from '../../components/LoginModal';
 import Appcontext from '../../context/Appcontext';
 import { SignupModal } from '../../components/SignupModal';
 import { Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { getallBlogs } from '../../api/Blog';
 
 
 export const Home = () => {
-    const { openLogin, openSignup } = useContext(Appcontext)
+    const { openLogin, openSignup } = useContext(Appcontext);
+    const [blogs,setBlogs] = useState([]);
+
+    useEffect(()=>{
+        const getBlogs = async () => {
+            try {
+                const allBlog = await getallBlogs();
+                console.log(allBlog)
+                setBlogs(allBlog.blog);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        return () => getBlogs()
+    },[])
+
     const items = [
         <div className='w-full relative'>
             <img className='w-full' src={img1} alt="carousel pics" role="presentation" />
@@ -63,6 +81,7 @@ export const Home = () => {
     ];
     return (
         <div className='home w-full h-screen relative'>
+        <Toaster/>
             <div style={{ display: openLogin }}>
                 <LoginModal />
             </div>
@@ -87,9 +106,15 @@ export const Home = () => {
                     BLOG ARTICLES
                 </span>
                 <div className='cards mt-10 flex flex-col gap-5 justify-center items-center md:flex-wrap md:flex-row md:justify-around'>
-                    <Card />
-                    <Card />
-                    <Card />
+                {blogs && blogs.length>0 ? blogs.slice(0,3).map((blog)=>{
+                    return (
+                        <Card
+                            title = {blog.title}
+                            desc = {blog.description}
+                            imageURL = {blog.imageURL}
+                        />
+                    )
+                }):<span>Loading...</span>}
                 </div>
                 <div className='w-full flex justify-center mt-8'>
                 <Link to={'/blogs'} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-10 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
