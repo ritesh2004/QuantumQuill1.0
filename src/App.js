@@ -17,7 +17,7 @@ function App() {
           <Route Component={Privateroute}>
             <Route path='/blogs' Component={Allblogs} />
             <Route path='/myblogs' Component={Myblogs} />
-            <Route path='/blog/:id' Component={Blog} />
+            <Route path='/blog/:id/' Component={Blog} />
             <Route path='/add' Component={Createblog} />
             <Route path='/edit/:id' Component={Editblog} />
           </Route>

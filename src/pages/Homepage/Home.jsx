@@ -112,6 +112,8 @@ export const Home = () => {
                             title = {blog.title}
                             desc = {blog.description}
                             imageURL = {blog.imageURL}
+                            author = {blog.user}
+                            postId = {blog._id}
                         />
                     )
                 }):<span>Loading...</span>}

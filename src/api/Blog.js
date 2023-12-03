@@ -35,3 +35,41 @@ export const myBlogs = async () => {
         alert("Something went wrong! Try again later")
     }
 }
+
+export const getBlog = async (id) => {
+    try {
+        const { data } = await axios.get(`https://blog-api-6yz2.onrender.com/api/v1/blog/${id}`,{
+            withCredentials:true
+        });
+        return data;
+    } catch (error) {
+        alert("Something went wrong! Try again later")
+    }
+}
+
+export const editBlog = async (id,title, description) => {
+    try {
+        const { data } = await axios.post(`https://blog-api-6yz2.onrender.com/api/v1/blog/edit/${id}`,{
+            title,description
+        },{
+            withCredentials : true
+        })
+        toast.success(data.message)
+        return data
+    } catch (error) {
+        toast.error(error.response.data.message)
+    }
+}
+
+export const deleteBlog = async (id) => {
+    try {
+        const { data } = await axios.get(`https://blog-api-6yz2.onrender.com/api/v1/blog/delete/${id}`,{
+            withCredentials : true
+        })
+
+        toast.success(data.message)
+        return data
+    } catch (error) {
+        toast.error(error.response.data.message)
+    }
+}

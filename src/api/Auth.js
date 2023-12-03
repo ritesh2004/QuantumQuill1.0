@@ -62,3 +62,12 @@ export const logOut = async () => {
         toast.error("Something went wrong!")
     }
 }
+
+export const getUser = async (id) => {
+    try {
+        const { data } = await axios.get(`https://blog-api-6yz2.onrender.com/api/v1/user/${id}`)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
