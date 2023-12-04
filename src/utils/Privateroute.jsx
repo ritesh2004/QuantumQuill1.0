@@ -11,6 +11,6 @@ export const Privateroute = ({ children }) => {
     const {setOpenLogin} = useContext(Appcontext)
 
     return (
-        isAuthenticated ? <Outlet/> : setOpenLogin("block") || <Home/>
+        isAuthenticated ? <Outlet/> : setOpenLogin(true) || <Home/>
     )
 }

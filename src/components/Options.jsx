@@ -4,6 +4,9 @@ import deleteLogo from '../icons/delete.svg'
 import { useNavigate } from 'react-router-dom';
 import { deleteBlog } from '../api/Blog';
 import Authcontext from '../context/Authcontext';
+import AOS from 'aos';
+
+AOS.init()
 
 export const Options = ({ id,author }) => {
     const { user } = useContext(Authcontext);
@@ -27,7 +30,7 @@ export const Options = ({ id,author }) => {
     }
     console.log(disabled)
   return (
-    <div className='w-[100px] h-full bg-white shadow-lg text-black  py-2 rounded'>
+    <div className='w-[100px] h-full bg-white shadow-lg text-black border-2 py-2 rounded' style={{position:'relative',zIndex:'2'}} data-aos="fade-down">
         <ul className='w-full' style={{opacity:disabled&&0.3}}>
             <li className='w-full flex flex-row gap-1 items-center px-2 hover:bg-gray-300'>
             <button className='w-full flex flex-row gap-1 items-center' onClick={()=>router(`/edit/${id}`)} style={{cursor:!disabled&&'pointer'}} disabled={disabled}>

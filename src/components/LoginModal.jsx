@@ -3,6 +3,9 @@ import Appcontext from '../context/Appcontext'
 import { logIn } from '../api/Auth';
 import { Toaster } from 'react-hot-toast';
 import Authcontext from '../context/Authcontext';
+import AOS from 'aos'
+
+AOS.init()
 
 export const LoginModal = () => {
     const { setOpenLogin,setOpenSignup } = useContext(Appcontext);
@@ -10,8 +13,8 @@ export const LoginModal = () => {
     const [form,setForm] = useState({email:"",password:""})
     const [loading,setLoading] = useState(false);
     const openCreateACModal = () => {
-        setOpenLogin("none")
-        setOpenSignup("block")
+        setOpenLogin(false)
+        setOpenSignup(true)
     }
     const handleForm = (e) => {
         const {name,value} = e.target;
@@ -28,7 +31,7 @@ export const LoginModal = () => {
             setLoading(true)
             await logIn(form.email,form.password);
             setChange(!change)
-            setOpenLogin("none")
+            setOpenLogin(false)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -38,7 +41,7 @@ export const LoginModal = () => {
     return (
         <div className="overflow-y-auto overflow-x-hidden fixed z-50 w-full h-screen flex justify-center items-center" style={{ background: 'rgba(0,0,0,0.5)',backdropFilter:'blur(5px)'}}>
         <Toaster/>
-            <div className="relative p-4 w-[350px] max-w-md max-h-full md:w-[500px]">
+            <div className="relative p-4 w-[350px] max-w-md max-h-full md:w-[500px]" data-aos="fade-up" data-aos-duration="1000">
                 {/* <!-- Modal content --> */}
                 <div className="relative bg-white rounded-lg shadow">
                     {/* <!-- Modal header --> */}
@@ -46,7 +49,7 @@ export const LoginModal = () => {
                         <h3 className="text-3xl font-extrabold text-gray-900">
                             Log in to QuantumQuill
                         </h3>
-                        <button type="button" className="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" onClick={() => setOpenLogin("none")}>
+                        <button type="button" className="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" onClick={() => setOpenLogin(false)}>
                             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>

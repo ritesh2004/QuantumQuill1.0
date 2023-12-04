@@ -17,10 +17,12 @@ import { SignupModal } from '../../components/SignupModal';
 import { Link } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { getallBlogs } from '../../api/Blog';
+import { Editbio } from '../../components/Editbio';
+import loader from '../../icons/loading.svg'
 
 
 export const Home = () => {
-    const { openLogin, openSignup } = useContext(Appcontext);
+    const { openLogin, openSignup,openProfile } = useContext(Appcontext);
     const [blogs,setBlogs] = useState([]);
 
     useEffect(()=>{
@@ -82,12 +84,9 @@ export const Home = () => {
     return (
         <div className='home w-full h-screen relative'>
         <Toaster/>
-            <div style={{ display: openLogin }}>
-                <LoginModal />
-            </div>
-            <div style={{ display: openSignup }}>
-                <SignupModal />
-            </div>
+            {openLogin && <LoginModal />}
+            {openSignup && <SignupModal />}
+            {openProfile && <Editbio />}
             <AliceCarousel
                 items={items}
                 animationType='fadeout'
@@ -116,7 +115,7 @@ export const Home = () => {
                             postId = {blog._id}
                         />
                     )
-                }):<span>Loading...</span>}
+                }):<img className='w-10 h-10' src={loader} alt='loader'/>}
                 </div>
                 <div className='w-full flex justify-center mt-8'>
                 <Link to={'/blogs'} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-10 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -140,9 +139,19 @@ export const Home = () => {
                     EDITOR'S PICK
                 </span>
                 <div className='flex justify-around pt-10 flex-col justify-center gap-5 items-center md:flex-row'>
-                    <ImageCard />
-                    <ImageCard />
-                    <ImageCard />
+                    {blogs && blogs.length > 0 ? 
+                    blogs.filter((b)=>b.editorsPick === true).map((blog)=>{
+                        return (
+                            <ImageCard
+                                imageURL = {blog.imageURL}
+                                title = {blog.title}
+                                description = {blog.description}
+                                id = {blog._id}
+                             />
+                        )
+                    })
+                    : <img className='w-10 h-10' src={loader} alt='loader'/>
+                    }
                 </div>
             </div>
             <Link className='fixed bottom-5 right-5 bg-blue-700 cursor-pointer p-3 rounded-xl hover:bg-[#03045e] md:bottom-10 md:right-10 md:p-5 md:rounded-2xl' to={'/add'}>

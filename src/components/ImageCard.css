@@ -4,7 +4,7 @@
     height: 350px;
     overflow: hidden;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .image-container img {
@@ -14,7 +14,7 @@
 }
 
 .image-container:hover img {
-    transform: scale(1.3);
+    transform: scale(1.1);
 }
 
 .image-text{
@@ -29,15 +29,16 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    height: 81%;
+    backdrop-filter: blur(5px);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    font-family: serif;
+    /* font-family: serif; */
+    font-family: Montserrat;
     flex-direction: column;
     padding: 10px;
 }
@@ -53,5 +54,6 @@
     }
     .overlay{
         opacity: 1;
+        height: 100%;
     }
 }

@@ -71,3 +71,17 @@ export const getUser = async (id) => {
         console.log(error)
     }
 }
+
+export const updateBio = async (id,bio) => {
+    try {
+        const { data } = await axios.post(`https://blog-api-6yz2.onrender.com/api/v1/user/update/${id}`,{
+            bio
+        },{
+            withCredentials : true
+        })
+        toast.success(data.message)
+        return data
+    } catch (error) {
+        toast.error(error.response.data.message)
+    }
+}

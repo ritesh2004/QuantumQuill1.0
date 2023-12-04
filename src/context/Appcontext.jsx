@@ -5,14 +5,20 @@ const Appcontext = createContext();
 export default Appcontext;
 
 const AppcontextProvider = ({children}) => {
-    const [openLogin,setOpenLogin] = useState("none")
-    const [openSignup,setOpenSignup] = useState("none")
+    const [openLogin,setOpenLogin] = useState(false)
+    const [openSignup,setOpenSignup] = useState(false)
+    const [openProfile,setOpenProfile] = useState(false)
+    const [openProfileOptions,setOpenProfileOptions] = useState(false);
 
     let values = {
         openLogin,
         openSignup,
         setOpenLogin,
-        setOpenSignup
+        setOpenSignup,
+        openProfile,
+        setOpenProfile,
+        openProfileOptions,
+        setOpenProfileOptions
     }
     return (
         <Appcontext.Provider value={values}>

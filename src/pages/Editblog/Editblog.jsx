@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar'
-import axios from 'axios';
-import { editBlog, getBlog, uploadBlog } from '../../api/Blog';
+import { editBlog, getBlog } from '../../api/Blog';
 import { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import { Editbio } from '../../components/Editbio';
+import Appcontext from '../../context/Appcontext';
 
 export const Editblog = () => {
+  const { openProfile } = useContext(Appcontext)
+
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState();
   const [loading, setLoading] = useState(false);
@@ -47,6 +50,7 @@ export const Editblog = () => {
     <div>
       <Navbar bgColor='#00b4d8' />
       <Toaster />
+      {openProfile && <Editbio />}
       <div className='w-full flex justify-center items-center' style={{ height: 'calc(100vh - 20vh)' }}>
         <form class="w-[90%] mx-auto my-auto md:w-[40%]" onSubmit={handleSubmit}>
           <div className='w-full text-center flex flex-col my-5'>
