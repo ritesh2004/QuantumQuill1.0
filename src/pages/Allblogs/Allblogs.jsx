@@ -22,7 +22,7 @@ export const Allblogs = () => {
             }
         }
 
-        return () => getBlogs()
+        getBlogs()
     },[])
 
     return (

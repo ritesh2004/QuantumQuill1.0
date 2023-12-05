@@ -21,7 +21,7 @@ export const Myblogs = () => {
             }
         }
 
-        return () => getBlogs()
+        getBlogs()
     },[])
 
     return (

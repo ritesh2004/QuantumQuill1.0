@@ -36,7 +36,7 @@ export const Home = () => {
             }
         }
 
-        return () => getBlogs()
+        getBlogs()
     },[])
 
     const items = [
