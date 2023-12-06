@@ -26,7 +26,7 @@ export const Editblog = () => {
       }
     }
 
-    return () => pastData()
+    pastData()
   }, [])
 
   const handleSubmit = async (e) => {

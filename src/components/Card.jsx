@@ -30,7 +30,7 @@ export const Card = (props) => {
     const shareCard = async () => {
         try {
             // Use the Clipboard API to write text to the clipboard
-            await navigator.clipboard.writeText(`http://localhost:3000/blog/${props.postId}`);
+            await navigator.clipboard.writeText(`https://blog-api-6yz2.onrender.com/blog/${props.postId}`);
             toast.success("Link copied to clipboard")
             console.log('Text copied to clipboard successfully');
         } catch (err) {
