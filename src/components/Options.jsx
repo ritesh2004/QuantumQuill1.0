@@ -13,8 +13,12 @@ export const Options = ({ id,author }) => {
     const [disabled,setDisabled] = useState(true);
     const route = useNavigate();
     useEffect(()=>{
-        if (user._id === author) {
-            setDisabled(false)
+        try {
+            if (user._id === author) {
+                setDisabled(false)
+            } 
+        } catch (error) {
+            console.log(error)
         }
     },[])
     const router = useNavigate();
@@ -31,7 +35,7 @@ export const Options = ({ id,author }) => {
     }
     console.log(disabled)
   return (
-    <div className='w-[100px] h-full bg-white shadow-lg text-black border-2 py-2 rounded' style={{position:'relative',zIndex:'2'}} data-aos="fade-down">
+    <div className='w-[100px] h-full bg-white text-black py-2 rounded' style={{position:'relative',zIndex:'2',boxShadow:'#0000002b 0px 11px 20px 0px'}} data-aos="fade-down">
         <ul className='w-full' style={{opacity:disabled&&0.3}}>
             <li className='w-full flex flex-row gap-1 items-center px-2 hover:bg-gray-300'>
             <button className='w-full flex flex-row gap-1 items-center' onClick={()=>router(`/edit/${id}`)} style={{cursor:!disabled&&'pointer'}} disabled={disabled}>
