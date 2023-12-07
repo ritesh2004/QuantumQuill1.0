@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar'
 import { editBlog, getBlog } from '../../api/Blog';
 import { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Editbio } from '../../components/Editbio';
 import Appcontext from '../../context/Appcontext';
 
@@ -14,6 +14,7 @@ export const Editblog = () => {
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
+  const route = useNavigate();
 
   useEffect(() => {
     const pastData = async () => {
@@ -22,7 +23,7 @@ export const Editblog = () => {
         setTitle(blog[0].title)
         setDesc(blog[0].description)
       } catch (error) {
-
+        console.log(error)
       }
     }
 
@@ -37,6 +38,7 @@ export const Editblog = () => {
       setLoading(false);
       setTitle("");
       setDesc("");
+      route("/myblogs")
     } catch (error) {
       setLoading(false)
       alert("Something went wrong!")
@@ -47,11 +49,11 @@ export const Editblog = () => {
   }
 
   return (
-    <div>
+    <div className='w-full h-screen bg-[#1d232a]'>
       <Navbar bgColor='#00b4d8' />
       <Toaster />
       {openProfile && <Editbio />}
-      <div className='w-full h-screen flex justify-center items-center'>
+      <div className='w-full h-auto flex justify-center items-center items-center mt-5 md:mt-14'>
         <form class="w-[90%] mx-auto my-auto md:w-[40%]" onSubmit={handleSubmit}>
           <div className='w-full text-center flex flex-col my-5'>
             <span className='font-extrabold text-white text-5xl'>

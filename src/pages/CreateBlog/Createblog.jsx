@@ -5,6 +5,7 @@ import { uploadBlog } from '../../api/Blog';
 import { Toaster } from 'react-hot-toast';
 import { Editbio } from '../../components/Editbio';
 import Appcontext from '../../context/Appcontext';
+import { useNavigate } from 'react-router-dom';
 
 export const Createblog = () => {
 
@@ -14,6 +15,8 @@ export const Createblog = () => {
     const [title, setTitle] = useState();
     const [desc, setDesc] = useState();
     const [loading,setLoading] = useState(false);
+
+    const route = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,6 +34,7 @@ export const Createblog = () => {
             setTitle("");
             setDesc("");
             setImage("");
+            route("/myblogs");
         } catch (error) {
             setLoading(false)
             alert("Something went wrong!")
@@ -41,11 +45,11 @@ export const Createblog = () => {
     }
 
     return (
-        <div>
+        <div className='w-full h-screen bg-[#1d232a]'>
             <Navbar bgColor='#00b4d8' />
             <Toaster/>
             {openProfile && <Editbio />}
-            <div className='w-full bg-[#1d232a] h-screen flex justify-center items-center'>
+            <div className='w-full h-auto flex justify-center items-center mt-5 md:mt-14'>
                 <form class="w-[90%] md:w-[40%]" onSubmit={handleSubmit}>
                     <div className='w-full text-center flex flex-col my-5'>
                         <span className='font-extrabold text-white text-5xl'>

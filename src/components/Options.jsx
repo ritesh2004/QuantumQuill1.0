@@ -10,7 +10,8 @@ AOS.init()
 
 export const Options = ({ id,author }) => {
     const { user } = useContext(Authcontext);
-    const [disabled,setDisabled] = useState(true)
+    const [disabled,setDisabled] = useState(true);
+    const route = useNavigate();
     useEffect(()=>{
         if (user._id === author) {
             setDisabled(false)
@@ -22,7 +23,7 @@ export const Options = ({ id,author }) => {
         if (confirmation) {
             try {
                 await deleteBlog(id);
-                window.location.reload(true);
+                route("/myblogs");
             } catch (error) {
                 console.log(error)
             }

@@ -21,7 +21,7 @@ const Authprovider = ({children}) => {
             }
         }
 
-        return () => verify()
+        verify()
     },[change])
 
     // console.log(isAuthenticated)
