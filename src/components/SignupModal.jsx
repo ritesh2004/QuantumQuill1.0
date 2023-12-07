@@ -11,7 +11,7 @@ AOS.init()
 export const SignupModal = () => {
     const { setOpenSignup, setOpenLogin } = useContext(Appcontext)
     const {setChange,change} = useContext(Authcontext)
-    const [form,setForm] = useState({name:"",username:"",password:"",email:""})
+    const [form,setForm] = useState({name:"",username:"",password:"",email:"",bio:""})
     const [image,setImage] = useState();
     const [loading,setLoading] = useState(false);
     const openLoginModal = () => {
@@ -36,9 +36,9 @@ export const SignupModal = () => {
         formData.append("upload_preset","rpBucket");
 
         setLoading(true)
-        const {data} = await axios.post("https://api.cloudinary.com/v1_1/drctt42py/image/upload",formData)
         try {
-            await signUp(form.name,form.username,form.email,form.password,data.url)
+            const {data} = await axios.post("https://api.cloudinary.com/v1_1/drctt42py/image/upload",formData)
+            await signUp(form.name,form.username,form.email,form.password,data.url,form.bio)
             setChange(!change)
             setOpenSignup(false)
             setLoading(false)
@@ -74,6 +74,9 @@ export const SignupModal = () => {
                             </div>
                             <div>
                                 <input type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full px-5 py-3" value={form.username} onChange={handleForm} placeholder="# enter username" autoComplete='off' required />
+                            </div>
+                            <div>
+                                <input type="text" name="bio" id="bio" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full px-5 py-3" value={form.bio} onChange={handleForm} placeholder="# enter bio" autoComplete='off'/>
                             </div>
                             <div>
                                 <input type="file" className="file-input file-input-bordered w-full rounded-full bg-gray-50 border-gray-300" autoComplete='off' onChange={(e)=>setImage(e.target.files[0])} required />

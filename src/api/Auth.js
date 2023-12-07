@@ -1,10 +1,10 @@
 import axios from "axios"
 import toast from "react-hot-toast"
 
-export const signUp = async (name, username, email, password, profileURL) => {
+export const signUp = async (name, username, email, password, profileURL,bio) => {
     try {
         const { data } = await axios.post('https://blog-api-6yz2.onrender.com/api/v1/user/add', {
-            name, username, email, password, profileURL
+            name, username, email, password, profileURL,bio
         },{
             headers : {
                 "Content-Type" : "application/json"
