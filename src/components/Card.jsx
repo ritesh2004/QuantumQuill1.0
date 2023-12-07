@@ -6,7 +6,6 @@ import { getUser } from '../api/Auth';
 import { useNavigate } from 'react-router-dom';
 import share from '../icons/share.svg'
 import threedot from '../icons/threedot.svg'
-import { useRef } from 'react';
 import toast from 'react-hot-toast';
 import { Options } from './Options';
 
@@ -39,7 +38,7 @@ export const Card = (props) => {
     };
     return (
         <div style={{ fontFamily: 'Montserrat' }} data-aos="zoom-in-up">
-            <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow w-[360px] h-[380px] md:h-[400px] md:w-[365px]">
+            <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow w-[360px] h-[410px] md:h-[400px] md:w-[365px]">
                 <figure className='w-[359px] h-[200px] md:w-[364px]'>
                     <img class="rounded-t-lg" style={{ height: '100%', width: '100%', objectFit: 'cover' }} src={props.imageURL} alt="card" />
                 </figure>

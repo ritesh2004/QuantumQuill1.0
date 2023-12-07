@@ -17,7 +17,7 @@ export const Allblogs = () => {
             try {
                 const allBlog = await getallBlogs();
                 console.log(allBlog)
-                setBlogs(allBlog.blog);
+                setBlogs(allBlog.blog.reverse());
             } catch (error) {
                 console.log(error);
             }

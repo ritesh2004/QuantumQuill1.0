@@ -43,6 +43,10 @@ export const Blog = () => {
         fetchData()
     }, [])
 
+    const datetime = new Date(data?.createdAt);
+    const formattedDate = datetime instanceof Date ? `${datetime.getFullYear()}-${(datetime.getMonth() + 1).toString().padStart(2, '0')}-${datetime.getDate().toString().padStart(2, '0')}` : "";
+
+
     return (
         <div>
             <Navbar bgColor='#00b4d8' />
@@ -50,7 +54,7 @@ export const Blog = () => {
             {!loading?<div><div className='my-10 flex flex-col gap-5 justify-center items-center' style={{fontFamily:'Montserrat'}}>
                 <span className='font-semibold text-2xl text-black p-5 w-full text-center md:w-[80%] md:text-4xl md:font-bold' style={{ color: '#008080' }}>
                     {data?.title}
-                    <p className='text-base font-semibold text-gray-500 text-right'>- {data?.createdAt}</p>
+                    <p className='text-lg text-gray-500 text-right'>- {formattedDate}</p>
                 </span>
                 <div className='w-full flex justify-around md:w-[80%] md:p-5'>
                     <figure className='w-[370px] h-auto md:w-[400px]'>
@@ -64,7 +68,7 @@ export const Blog = () => {
                         <br />
                         <span className='text-white font-bold'>{author?.name}</span>
                         <span className='text-gray-100 bg-[#424f5f] px-4 py-1 rounded-2xl my-2'>@{author?.username}</span>
-                        <p className='text-center'>
+                        <p className='text-center text-gray-200'>
                             {author?.bio}
                         </p>
                     </div>
