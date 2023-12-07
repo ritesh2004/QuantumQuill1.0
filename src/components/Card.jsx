@@ -30,7 +30,7 @@ export const Card = (props) => {
     const shareCard = async () => {
         try {
             // Use the Clipboard API to write text to the clipboard
-            await navigator.clipboard.writeText(`https://blog-api-6yz2.onrender.com/blog/${props.postId}`);
+            await navigator.clipboard.writeText(`https://quantum-quill1-0.vercel.app/blog/${props.postId}`);
             toast.success("Link copied to clipboard")
             console.log('Text copied to clipboard successfully');
         } catch (err) {
@@ -39,8 +39,8 @@ export const Card = (props) => {
     };
     return (
         <div style={{ fontFamily: 'Montserrat' }} data-aos="zoom-in-up">
-            <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow w-[360px] h-[380px] md:h-[400px]">
-                <figure className='w-[359px] h-[200px]'>
+            <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow w-[360px] h-[380px] md:h-[400px] md:w-[365px]">
+                <figure className='w-[359px] h-[200px] md:w-[364px]'>
                     <img class="rounded-t-lg" style={{ height: '100%', width: '100%', objectFit: 'cover' }} src={props.imageURL} alt="card" />
                 </figure>
                 <div class="relative p-5">
@@ -48,7 +48,7 @@ export const Card = (props) => {
                         <img className='w-5 h-5' src={threedot} alt='options' />
                     </span></h5>
                     {open && <div className='absolute top-[3.25rem] right-[2.5rem]'><Options id={props?.postId} author={props.author} /></div>}
-                    <p class="mb-3 font-normal text-gray-700 cursor-pointer" onClick={() => router(`/blog/${props.postId}`)}>{props.desc?.slice(0, 80)}<span className='text-blue-500'>...read more</span></p>
+                    <p class="mb-3 font-normal text-gray-700 cursor-pointer" onClick={() => router(`/blog/${props.postId}`)}>{props.desc?.slice(0, 70)}<span className='text-blue-500'>...read more</span></p>
                     <div className='fixed bottom-5 w-[calc(100%-3rem)] flex justify-between items-center'>
                         <span className='flex gap-2 items-center text-gray-500'>
                             <img class="w-10 h-10 rounded-full" src={author?.profileURL} alt="Rounded avatar" />

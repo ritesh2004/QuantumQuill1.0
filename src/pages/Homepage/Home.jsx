@@ -30,7 +30,7 @@ export const Home = () => {
             try {
                 const allBlog = await getallBlogs();
                 console.log(allBlog)
-                setBlogs(allBlog.blog);
+                setBlogs(allBlog.blog.reverse());
             } catch (error) {
                 console.log(error);
             }
@@ -82,7 +82,7 @@ export const Home = () => {
         </div>,
     ];
     return (
-        <div className='home w-full h-screen relative'>
+        <div className='home w-full h-full bg-[#1d232a] min-h-screen relative'>
         <Toaster/>
             {openLogin && <LoginModal />}
             {openSignup && <SignupModal />}

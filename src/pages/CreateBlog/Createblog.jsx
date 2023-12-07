@@ -45,13 +45,13 @@ export const Createblog = () => {
             <Navbar bgColor='#00b4d8' />
             <Toaster/>
             {openProfile && <Editbio />}
-            <div className='w-full flex justify-center items-center' style={{ height: 'calc(100vh - 20vh)' }}>
-                <form class="w-[90%] mx-auto my-auto md:w-[40%]" onSubmit={handleSubmit}>
+            <div className='w-full bg-[#1d232a] h-screen flex justify-center items-center'>
+                <form class="w-[90%] md:w-[40%]" onSubmit={handleSubmit}>
                     <div className='w-full text-center flex flex-col my-5'>
-                        <span className='font-extrabold text-5xl'>
+                        <span className='font-extrabold text-white text-5xl'>
                             POST
                         </span>
-                        <span className='text-sm'>
+                        <span className='text-white text-sm'>
                             Your thoughts
                         </span>
                     </div>

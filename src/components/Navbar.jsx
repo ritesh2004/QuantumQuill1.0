@@ -29,7 +29,7 @@ export const Navbar = ({ bgColor }) => {
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-80 min-h-full bg-[#1d232a] text-base-content">
                         {/* Sidebar content here */}
                         <li className="block py-2 px-3 text-white">
                             <NavLink to={'/'}>Home</NavLink>
@@ -68,11 +68,11 @@ export const Navbar = ({ bgColor }) => {
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src={logo} class="h-10 w-10 rounded-full" alt="QuantumQuill Logo" />
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">QuantumQuill</span>
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">QuantumQuill</span>
                     </a>
                     <div className="drawer-content">
                         {/* Page content here */}
-                        <label htmlFor="my-drawer" className="btn btn-ghost drawer-button md:hidden">
+                        <label htmlFor="my-drawer" className="btn btn-ghost text-white drawer-button md:hidden">
                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
                             </svg>
