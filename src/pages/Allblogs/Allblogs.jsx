@@ -7,6 +7,7 @@ import loader from '../../icons/loading.svg'
 import Appcontext from '../../context/Appcontext'
 import { Editbio } from '../../components/Editbio'
 import { Link } from 'react-router-dom'
+import { SkeletonCard } from '../../components/SkeletonCard'
 
 
 export const Allblogs = () => {
@@ -41,7 +42,9 @@ export const Allblogs = () => {
                             postId={blog._id}
                         />
                     )
-                }) : <img className='w-10 h-10' src={loader} alt='loader' />}
+                }) : 
+                <SkeletonCard duration={5} items={8}/>
+                }
                 <Link className='fixed bottom-5 right-5 bg-blue-700 cursor-pointer p-3 rounded-xl hover:bg-[#03045e] md:bottom-10 md:right-10 md:p-5 md:rounded-2xl' to={'/add'}>
                     <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />

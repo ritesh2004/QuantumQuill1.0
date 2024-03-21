@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast'
 import { ProfileOptions } from './ProfileOptions'
 import logo from '../Images/carousel/logo.png'
 import { logOut } from '../api/Auth'
+import axios from 'axios'
 
 export const Navbar = ({ bgColor }) => {
     const { setOpenLogin, setOpenSignup, setOpenProfileOptions, openProfileOptions, setOpenProfile } = useContext(Appcontext);

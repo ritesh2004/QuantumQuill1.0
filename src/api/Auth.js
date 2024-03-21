@@ -85,3 +85,41 @@ export const updateBio = async (id,bio) => {
         toast.error(error.response.data.message)
     }
 }
+
+// For handling sign up with google
+export const signupGoogle = async (name,username,email,profileURL,bio) => {
+    try {
+        const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/create/google`, {
+            name, username, email, profileURL,bio
+        },{
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            withCredentials : true
+        })
+        toast.success(data.message)
+        return data
+    } catch (error) {
+        toast.error(error.response.data.message)
+    }
+}
+
+// For handling login with google
+export const googleLogin = async (email)  => {
+    try {
+        const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login/google`,{
+            email
+        },{
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            withCredentials : true
+        })
+        toast.success(data.message)
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log(error)
+        toast.error(error.response.data.message)
+    }
+}
