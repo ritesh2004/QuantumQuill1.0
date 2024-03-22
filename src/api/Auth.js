@@ -72,10 +72,10 @@ export const getUser = async (id) => {
     }
 }
 
-export const updateBio = async (id,bio) => {
+export const updateBio = async (id,bio,username) => {
     try {
         const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/update/${id}`,{
-            bio
+            bio,username
         },{
             withCredentials : true
         })

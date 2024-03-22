@@ -45,7 +45,7 @@ export const Navbar = ({ bgColor }) => {
                             <span onClick={() => setOpenProfile(true)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                            </svg>Edit Bio</span>
+                            </svg>Edit Profile</span>
                         </li>}
                         {isAuthenticated && <li class="block py-2 px-3 text-white rounded" onClick={handleLogout}>
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -59,8 +59,12 @@ export const Navbar = ({ bgColor }) => {
                         {!isAuthenticated ? <li>
                             <button type="button" class="my-2 text-white font-medium border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2 text-center" onClick={() => setOpenSignup(true)}>Signup</button>
                         </li> :
-                            <div className='px-6'>
+                            <div className='px-6 w-full flex flex-row items-center gap-5'>
                                 <img class="my-5 w-10 h-10 rounded-full cursor-pointer" src={user?.profileURL} alt="Rounded avatar" />
+                                <div className='flex flex-col'>
+                                    <span className='text-white text-base'>{user?.name}</span>
+                                    <span className='text-sm'>{user?.username}</span>
+                                </div>
                             </div>}
                     </ul>
                 </div>

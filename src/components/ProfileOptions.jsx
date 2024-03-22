@@ -27,7 +27,7 @@ export const ProfileOptions = () => {
             <li className='w-full flex flex-row gap-1 items-center px-2 hover:bg-gray-300'>
             <button className='w-full flex flex-row gap-1 items-center' onClick={()=>setOpenProfile("block")}>
             <img className='w-4 h-4' src={editLogo} alt=''/>
-            Edit Bio </button></li>
+            Profile </button></li>
             <li className='w-full flex flex-row gap-1 items-center px-2 hover:bg-gray-300'>
             <button className='w-full flex flex-row gap-1 items-center' onClick={handleLogout}>
             <img className='w-4 h-4' src={logoutLogo} alt=''/>
