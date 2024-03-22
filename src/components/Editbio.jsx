@@ -7,7 +7,7 @@ import AOS from 'aos'
 AOS.init()
 
 export const Editbio = () => {
-    const { setOpenProfile } = useContext(Appcontext);
+    const { setOpenProfile,setChange,change } = useContext(Appcontext);
     const { user } = useContext(Authcontext);
 
     const [bio,setBio] = useState();
@@ -21,6 +21,7 @@ export const Editbio = () => {
     const editBio = async () => {
         try {
             await updateBio(user?._id,bio,username)
+            setChange(!change)
             setOpenProfile(false)
         } catch (error) {
             console.log(error)
