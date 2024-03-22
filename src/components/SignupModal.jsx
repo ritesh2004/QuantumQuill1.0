@@ -33,7 +33,7 @@ export const SignupModal = () => {
         try {
             const provider = new GoogleAuthProvider();
             const { user } = await signInWithPopup(auth,provider);
-            const { data } = await signupGoogle(user.displayName,user.displayName,user.email,user.photoURL);
+            const { data } = await signupGoogle(user.displayName,user.email,user.photoURL);
             console.log(data);
             setChange(!change);
             setOpenSignup(false)

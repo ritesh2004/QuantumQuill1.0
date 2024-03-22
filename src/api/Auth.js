@@ -87,10 +87,10 @@ export const updateBio = async (id,bio) => {
 }
 
 // For handling sign up with google
-export const signupGoogle = async (name,username,email,profileURL,bio) => {
+export const signupGoogle = async (name,email,profileURL) => {
     try {
         const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/create/google`, {
-            name, username, email, profileURL,bio
+            name, email, profileURL
         },{
             headers : {
                 "Content-Type" : "application/json"
